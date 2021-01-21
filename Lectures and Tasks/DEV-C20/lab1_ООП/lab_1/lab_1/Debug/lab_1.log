@@ -1,0 +1,7 @@
+﻿  myRect.cpp
+  BoundingRect.cpp
+d:\users\kovalenko_stas\lab_1\lab_1\boundingrect.cpp(22): error C2662: 'void Rect::GetAll(int &,int &,int &,int &)': cannot convert 'this' pointer from 'const Rect' to 'Rect &'
+  d:\users\kovalenko_stas\lab_1\lab_1\boundingrect.cpp(22): note: Conversion loses qualifiers
+d:\users\kovalenko_stas\lab_1\lab_1\boundingrect.cpp(25): error C2662: 'void Rect::GetAll(int &,int &,int &,int &)': cannot convert 'this' pointer from 'const Rect' to 'Rect &'
+  d:\users\kovalenko_stas\lab_1\lab_1\boundingrect.cpp(25): note: Conversion loses qualifiers
+  Generating Code...

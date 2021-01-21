@@ -1,0 +1,11 @@
+﻿  Circle.cpp
+  Rect.cpp
+  Shape.cpp
+  StrConcatination.cpp
+  main.cpp
+  myString.cpp
+c:\users\зверюга!\desktop\dev-c20\lab2_ооп\lab_2\lab_2\mystring.cpp(49): error C2511: MyString::MyString(MyString &): перегруженная функция-член не найдена в "MyString"
+  c:\users\зверюга!\desktop\dev-c20\lab2_ооп\lab_2\lab_2\mystring.h(2): note:  см. объявление "MyString"
+c:\users\зверюга!\desktop\dev-c20\lab2_ооп\lab_2\lab_2\mystring.cpp(51): error C2597: недопустимая ссылка на нестатический член "MyString::m_pStr"
+c:\users\зверюга!\desktop\dev-c20\lab2_ооп\lab_2\lab_2\mystring.cpp(52): error C2597: недопустимая ссылка на нестатический член "MyString::m_pStr"
+  Создание кода...
