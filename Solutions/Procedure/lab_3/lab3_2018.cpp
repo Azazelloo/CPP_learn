@@ -6,9 +6,11 @@
 							Ссылки.
 *************************************************************/
 #define	  stop __asm nop
-#define TASK_3
+#define TASK_5_b
 
 #include <iostream>
+#include <string>
+#include <ctime>
 
 int main() {
 
@@ -16,6 +18,7 @@ int main() {
 //			Встроенные массивы                               //
 ///////////////////////////////////////////////////////////////
 #ifdef TASK_1
+	std::cout << "Task 1:\n";
 	//Задание 1. Объявите трехмерный N*M*K массив и сформируйте указанные
 	//значения элементов следующим образом:
 	//а) проинициализируйте массив при объявлении
@@ -85,6 +88,7 @@ const size_t N = 10;
 	int j;
 
 #ifdef TASK_2_a
+	std::cout << "Task 2a:\n";
 
 	while (counter < N) {
 		std::cin >> inpArr[counter];
@@ -114,8 +118,9 @@ const size_t N = 10;
 //дубли игнорируются
 // -34 2 56 342 0 1 -45 1 56 4 100 12
 #ifdef TASK_2_b
+std::cout << "Task 2b:\n";
 
-int inpArrV2[N], checkVal;
+	int inpArrV2[N], checkVal;
 	counter = 0;
 	bool flag;
 
@@ -157,6 +162,8 @@ int inpArrV2[N], checkVal;
 
 #ifdef TASK_3
 
+		std::cout << "Task 3:\n";
+
 ///////////////////////////////////////////////////////////////////////////
 //Задание 3*.С помощью данной заготовки напишите программу,
 //которая:
@@ -178,47 +185,77 @@ int inpArrV2[N], checkVal;
 //STOP_STRING  -  "*"	//признак "прекратить ввод"
 //M  -  80	//максимальный размер одной строки
 //N  -  10	//максимальное количество строк в массиве
+	//Объявите двухмерный массив с именем cBuffer типа char и
+	// размерностью N*M
+	//Объявите массив (с именем cPointers) указателей на строки
+	//размерностью N
+	//Цикл ввода строк:
+	//а) выведите приглашение для ввода
+
+	//б) пока не введена строка STOP_STRING или не заполнен весь массив
+
+	{
+	//ввод строки в массив cBuffer:
+
+	//если введена строка - признак окончания, то выйти из цикла
+
+	//Присвойте элементу массива cPointers с индексом nIndex
+	//указатель на строку с номером nIndex в массиве cBuffer
 
 
-
-//Объявите двухмерный массив с именем cBuffer типа char и
-// размерностью N*M
+	}
 
 
-//Объявите массив (с именем cPointers) указателей на строки
-//размерностью N
+	//Выдать диагностику о том, что прием строк завершен.
 
+#define STOP_STRING "*"
 
-//Цикл ввода строк:
-//а) выведите приглашение для ввода
+	const size_t rowSymArr = 5;
+	const size_t colSymArr = 80;
+	size_t realSize = 0;
 
-//б) пока не введена строка STOP_STRING или не заполнен весь массив
+	char symArr[rowSymArr][colSymArr];
+	char* p_symArr[rowSymArr];
 
-		{
-		//ввод строки в массив cBuffer:
+	for (int i = 0; i < rowSymArr; i++) {
+		std::cout << "Enter row or * for end: ";
+		std::cin >> symArr[i];
+		if (!strcmp(symArr[i], STOP_STRING)) break;
 
-		//если введена строка - признак окончания, то выйти из цикла
-
-		//Присвойте элементу массива cPointers с индексом nIndex
-		//указатель на строку с номером nIndex в массиве cBuffer
-
-
+		p_symArr[i] = &symArr[i][0];
+		++realSize;
 		}
 
+	//Теперь сортируем строки:
+	std::cout << "Sort: \n";
 
-		//Выдать диагностику о том, что прием строк завершен.
+	for (int i = 0; i < realSize -1;i++) {
+		for (int j = 0; j < realSize -i-1;j++) {
+			if (strcmp(p_symArr[j], p_symArr[j+1])>0) {
+				std::swap(p_symArr[j], p_symArr[j+1]);
+				}
+			}
+		//____вывод каждой итерации сортировки
+		std::cout << "\nStep" << i << "->\n";
+		for (int i = 0; i < realSize;i++) {
+			for (int j = 0; j < strlen(p_symArr[i]);j++) {
+				std::cout<< p_symArr[i][j];
+				}
+			std::cout << std::endl;
+			}
 
-
-
-		//Теперь сортируем строки:
-
+		}
+	stop
 		//Цикл сортировки строк по методу "всплывающего пузырька" в
 		//порядке возрастания. На каждой итерации - промежуточная печать
 		//отсортированных строк
 
 #endif
 
-/*
+#ifdef TASK_4
+
+		std::cout << "Task 4:\n";
+
 //Задание 4*. Объявление и использование указателей на многомерные
 // массивы. Проинициализируйте трехмерный массив
 //double dArray[4][3][3] так, как показано на рисунке и напишите фрагмент
@@ -247,7 +284,7 @@ int inpArrV2[N], checkVal;
 //			  | 2  2  2 |__|
 //			  | 2  2  2 | /
 //			  |_________|
-
+/*
 for(int i=0; i<...; ...)
 {
 //Замечание: НЕ НУЖНО МОДИФИЦИРОВАТЬ ВЫРАЖЕНИЯ СПРАВА ОТ ЗНАКА РАВЕНСТВА!!!
@@ -258,7 +295,29 @@ for(int i=0; i<...; ...)
 
 }
 */
-/*
+
+	double dArray[4][3][3];
+	for (int i = 0; i < 4;i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
+				dArray[i][j][k] = i+1;
+				}
+			}
+		}
+
+	for (int i = 0; i < 4;i+=2) {
+		//double(*lay1)[3] = dArray[i];
+		//double(*lay2)[3] = dArray[i+1];
+
+		std::swap(dArray[i],dArray[i+1]);
+		}
+
+		stop
+#endif
+
+#ifdef TASK_5_a
+			std::cout << "Task 5a:\n";
+
 ///////////////////////////////////////////////////////////////////////////
 //Задание 5а. Объявите двухмерный ВСТРОЕННЫЙ массив элементов типа char.
 //Сформируйте значения элементов массива с помощью генератора случайных
@@ -269,17 +328,82 @@ for(int i=0; i<...; ...)
 //было - '*' '_' '_' '*' '*' '_' '*' '_' '*' '_'
 //стало: '*' '*' '*' '*' '*' '_' '_' '_' '_' '_'
 //и распечатайте массив по строкам - "постройте распределение"
+		srand(time(NULL));
+		const size_t rowStarArr = 3;
+		const size_t colStarArr = 10;
+		
+		char starArr[rowStarArr][colStarArr];
+		for (int i = 0; i < rowStarArr;i++) {
+			for (int j = 0; j < colStarArr;j++) {
+				int randVal = rand() % (2 - 1 + 1) + 1;
+				if (randVal == 1) starArr[i][j] = '*';
+				else starArr[i][j] = '_';
+				}
+			}
 
+		//______сдвигаем звездочки (например пузырьком)
 
+		for (int i = 0; i < rowStarArr;i++) {
+			for (int j = 0; j < colStarArr - 1;j++) {
+				for (int k = 0; k < colStarArr - j - 1;k++) {
+					if (starArr[i][k]=='_') {
+						std::swap(starArr[i][k],starArr[i][k+1]);
+						}
+					}
+				}
+			}
 
-*/
+		//_____вывод в консоль
 
+		for (int i = 0; i < rowStarArr; i++) {
+			for (int j = 0; j < colStarArr;j++) {
+				std::cout << starArr[i][j] << " ";
+				}
+			std::cout << std::endl;
+			}
+		stop
 
+#endif
+
+#ifdef TASK_5_b
+			std::cout << "Task 5b:\n";
 // 5б. Модифицируйте предыдущее задание следующим способом:
 //После заполнения массива с помощью генератора случайных чисел
 //"сдвиньте" звездочки по столбцам вниз и распечатайте полученное
 //"распределение"
+		srand(time(NULL));
+		const size_t rowStarArr = 3;
+		const size_t colStarArr = 10;
 
+		char starArr[rowStarArr][colStarArr];
+		for (int i = 0; i < rowStarArr; i++) {
+			for (int j = 0; j < colStarArr; j++) {
+				int randVal = rand() % (2 - 1 + 1) + 1;
+				if (randVal == 1) starArr[i][j] = '*';
+				else starArr[i][j] = '_';
+				}
+			}
+
+		//______сдвигаем звездочки
+		for (int i = 0; i < colStarArr; i++) {
+			for (int j = 0; j < rowStarArr - 1; j++) {
+				for (int k = 0; k < rowStarArr - j - 1; k++) {
+					if (starArr[k][i] == '*') {
+						std::swap(starArr[k][i], starArr[k+1][i]);
+						}
+					}
+				}
+			}
+		//_____вывод в консоль
+		for (int i = 0; i < rowStarArr; i++) {
+			for (int j = 0; j < colStarArr; j++) {
+				std::cout << starArr[i][j] << " ";
+				}
+			std::cout << std::endl;
+			}
+		stop
+
+#endif
 ///////////////////////////////////////////////////////////////
 //			Динамическое выделение памяти                    //
 ///////////////////////////////////////////////////////////////
