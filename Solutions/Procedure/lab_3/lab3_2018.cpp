@@ -6,7 +6,7 @@
 							Ссылки.
 *************************************************************/
 #define	  stop __asm nop
-#define TASK_5_b
+#define TASK_7
 
 #include <iostream>
 #include <string>
@@ -229,17 +229,17 @@ std::cout << "Task 2b:\n";
 	//Теперь сортируем строки:
 	std::cout << "Sort: \n";
 
-	for (int i = 0; i < realSize -1;i++) {
-		for (int j = 0; j < realSize -i-1;j++) {
-			if (strcmp(p_symArr[j], p_symArr[j+1])>0) {
-				std::swap(p_symArr[j], p_symArr[j+1]);
+	for (int i = 0; i < realSize - 1; i++) {
+		for (int j = 0; j < realSize - i - 1; j++) {
+			if (strcmp(p_symArr[j], p_symArr[j + 1]) > 0) {
+				std::swap(p_symArr[j], p_symArr[j + 1]);
 				}
 			}
 		//____вывод каждой итерации сортировки
 		std::cout << "\nStep" << i << "->\n";
-		for (int i = 0; i < realSize;i++) {
-			for (int j = 0; j < strlen(p_symArr[i]);j++) {
-				std::cout<< p_symArr[i][j];
+		for (int i = 0; i < realSize; i++) {
+			for (int j = 0; j < strlen(p_symArr[i]); j++) {
+				std::cout << p_symArr[i][j];
 				}
 			std::cout << std::endl;
 			}
@@ -297,26 +297,26 @@ for(int i=0; i<...; ...)
 */
 
 	double dArray[4][3][3];
-	for (int i = 0; i < 4;i++) {
+	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
-				dArray[i][j][k] = i+1;
+				dArray[i][j][k] = i + 1;
 				}
 			}
 		}
 
-	for (int i = 0; i < 4;i+=2) {
+	for (int i = 0; i < 4; i += 2) {
 		//double(*lay1)[3] = dArray[i];
 		//double(*lay2)[3] = dArray[i+1];
 
-		std::swap(dArray[i],dArray[i+1]);
+		std::swap(dArray[i], dArray[i + 1]);
 		}
 
-		stop
+	stop
 #endif
 
 #ifdef TASK_5_a
-			std::cout << "Task 5a:\n";
+		std::cout << "Task 5a:\n";
 
 ///////////////////////////////////////////////////////////////////////////
 //Задание 5а. Объявите двухмерный ВСТРОЕННЫЙ массив элементов типа char.
@@ -328,80 +328,80 @@ for(int i=0; i<...; ...)
 //было - '*' '_' '_' '*' '*' '_' '*' '_' '*' '_'
 //стало: '*' '*' '*' '*' '*' '_' '_' '_' '_' '_'
 //и распечатайте массив по строкам - "постройте распределение"
-		srand(time(NULL));
-		const size_t rowStarArr = 3;
-		const size_t colStarArr = 10;
-		
-		char starArr[rowStarArr][colStarArr];
-		for (int i = 0; i < rowStarArr;i++) {
-			for (int j = 0; j < colStarArr;j++) {
-				int randVal = rand() % (2 - 1 + 1) + 1;
-				if (randVal == 1) starArr[i][j] = '*';
-				else starArr[i][j] = '_';
-				}
+	srand(time(NULL));
+	const size_t rowStarArr = 3;
+	const size_t colStarArr = 10;
+
+	char starArr[rowStarArr][colStarArr];
+	for (int i = 0; i < rowStarArr; i++) {
+		for (int j = 0; j < colStarArr; j++) {
+			int randVal = rand() % (2 - 1 + 1) + 1;
+			if (randVal == 1) starArr[i][j] = '*';
+			else starArr[i][j] = '_';
 			}
+		}
 
-		//______сдвигаем звездочки (например пузырьком)
+	//______сдвигаем звездочки (например пузырьком)
 
-		for (int i = 0; i < rowStarArr;i++) {
-			for (int j = 0; j < colStarArr - 1;j++) {
-				for (int k = 0; k < colStarArr - j - 1;k++) {
-					if (starArr[i][k]=='_') {
-						std::swap(starArr[i][k],starArr[i][k+1]);
-						}
+	for (int i = 0; i < rowStarArr; i++) {
+		for (int j = 0; j < colStarArr - 1; j++) {
+			for (int k = 0; k < colStarArr - j - 1; k++) {
+				if (starArr[i][k] == '_') {
+					std::swap(starArr[i][k], starArr[i][k + 1]);
 					}
 				}
 			}
+		}
 
-		//_____вывод в консоль
+	//_____вывод в консоль
 
-		for (int i = 0; i < rowStarArr; i++) {
-			for (int j = 0; j < colStarArr;j++) {
-				std::cout << starArr[i][j] << " ";
-				}
-			std::cout << std::endl;
+	for (int i = 0; i < rowStarArr; i++) {
+		for (int j = 0; j < colStarArr; j++) {
+			std::cout << starArr[i][j] << " ";
 			}
-		stop
+		std::cout << std::endl;
+		}
+	stop
 
 #endif
 
 #ifdef TASK_5_b
-			std::cout << "Task 5b:\n";
+		std::cout << "Task 5b:\n";
 // 5б. Модифицируйте предыдущее задание следующим способом:
 //После заполнения массива с помощью генератора случайных чисел
 //"сдвиньте" звездочки по столбцам вниз и распечатайте полученное
 //"распределение"
-		srand(time(NULL));
-		const size_t rowStarArr = 3;
-		const size_t colStarArr = 10;
+	srand(time(NULL));
+	const size_t rowStarArr = 3;
+	const size_t colStarArr = 10;
 
-		char starArr[rowStarArr][colStarArr];
-		for (int i = 0; i < rowStarArr; i++) {
-			for (int j = 0; j < colStarArr; j++) {
-				int randVal = rand() % (2 - 1 + 1) + 1;
-				if (randVal == 1) starArr[i][j] = '*';
-				else starArr[i][j] = '_';
-				}
+	char starArr[rowStarArr][colStarArr];
+	for (int i = 0; i < rowStarArr; i++) {
+		for (int j = 0; j < colStarArr; j++) {
+			int randVal = rand() % (2 - 1 + 1) + 1;
+			if (randVal == 1) starArr[i][j] = '*';
+			else starArr[i][j] = '_';
 			}
+		}
 
-		//______сдвигаем звездочки
-		for (int i = 0; i < colStarArr; i++) {
-			for (int j = 0; j < rowStarArr - 1; j++) {
-				for (int k = 0; k < rowStarArr - j - 1; k++) {
-					if (starArr[k][i] == '*') {
-						std::swap(starArr[k][i], starArr[k+1][i]);
-						}
+	//______сдвигаем звездочки
+	for (int i = 0; i < colStarArr; i++) {
+		for (int j = 0; j < rowStarArr - 1; j++) {
+			for (int k = 0; k < rowStarArr - j - 1; k++) {
+				if (starArr[k][i] == '*') {
+					std::swap(starArr[k][i], starArr[k + 1][i]);
 					}
 				}
 			}
-		//_____вывод в консоль
-		for (int i = 0; i < rowStarArr; i++) {
-			for (int j = 0; j < colStarArr; j++) {
-				std::cout << starArr[i][j] << " ";
-				}
-			std::cout << std::endl;
+		}
+	//_____вывод в консоль
+	for (int i = 0; i < rowStarArr; i++) {
+		for (int j = 0; j < colStarArr; j++) {
+			std::cout << starArr[i][j] << " ";
 			}
-		stop
+		std::cout << std::endl;
+		}
+	stop
 
 #endif
 ///////////////////////////////////////////////////////////////
@@ -421,37 +421,124 @@ for(int i=0; i<...; ...)
 	//и time() (<ctime>).
 	//Функция srand() осуществляет «привязку» начала генерации к указанному в качестве параметра значению.
 	//Функция time() задает эту точку отсчета, считывая текущее время
+	stop
+	srand(time(NULL));
+	int rowSize = 5, colSize = 10;
+	int minRange = -10, maxRange = 10;
+	int** pArr = new int*[rowSize];
 
-	//srand( time( 0 ) );
+	for (int i = 0; i < rowSize; i++) {
+		pArr[i] = new int[colSize];
+		for (int j = 0; j < colSize; j++) {
+			pArr[i][j] = rand() % (maxRange - minRange + 1) + minRange;
+			}
+		}
+	stop
 
-
-
+#ifdef TASK_6_a
+		stop
+		std::cout << "Task 6a:\n";
 	//Задание 6а. В сформированном массиве отсортируйте каждую строку по
 	//убыванию значений. Используйте сортировку "выбором"
 
+	//______было
+	for (int i = 0; i < rowSize; i++) {
+		for (int j = 0; j < colSize; j++) {
+			std::cout << pArr[i][j] << " ";
+			}
+		std::cout << std::endl;
+		}
+	std::cout << "\n\n";
 
+	//_____сортировка строк выбором
+	for (int i = 0; i < rowSize; i++) {
+		for (int j = 0; j < colSize - 1; j++) {
+			int min = j;
+			for (int k = j + 1; k < colSize; k++) {
+				if (pArr[i][k] < pArr[i][min]) {
+					min = k;
+					}
+				}
+			if (min != j) {
+				std::swap(pArr[i][j], pArr[i][min]);
+				}
+			}
+		}
+
+	//_______стало
+	for (int i = 0; i < rowSize; i++) {
+		for (int j = 0; j < colSize; j++) {
+			std::cout << pArr[i][j] << " ";
+			}
+		std::cout << std::endl;
+		}
+	std::cout << "\n\n";
+
+	stop
+#endif
+
+
+	double* averageArr = new double[rowSize];
+
+#ifdef TASK_6_b
 	//Задание 6б. Объявите одномерный массив размерностью N.
 	//Сформируйте значение i-ого элемента одномерного массива  
 	//равным среднему значению элементов i-ой строки
 	//двухмерного массива
 
+	for (int i = 0; i < rowSize; i++) {
+		averageArr[i] = 0;
+		for (int j = 0; j < colSize; j++) {
+			averageArr[i] += pArr[i][j];
+			}
+		averageArr[i] = averageArr[i] / colSize;
+		}
 
+	for (int i = 0; i < rowSize; i++) {
+		std::cout << averageArr[i] << " ";
+		}
+	std::cout << "\n\n";
+	stop
+#endif
 	//Подсказка - не забудьте освободить память!
 
+	delete[] averageArr;
 
+	for (int i = 0; i < rowSize; i++) {
+		delete[] pArr[i];
+		}
+	delete[] pArr;
 
+	stop
 
-
-
-/*
+#ifdef TASK_7
 	//Задание 7*. Реализуйте задание №3, используя не встроенные,
 	//а ДИНАМИЧЕСКИЕ массивы (массив?). Так как строки могут быть разной длины,
 	//эффективным решением было бы отводить под каждую строку ровно столько байтов,
 	//сколько требуется для ее хранения.
 	//При этом необходимые параметры (количество строк
 	// сформируйте с помощью потока ввода
-	int nStringNumber;
+	//int nStringNumber;
 
+	///////////////////////////////////////////////////////////////////////////
+	//Задание 3*.С помощью данной заготовки напишите программу,
+	//которая:
+	//вводит строки с клавиатуры с помощью cin>>...
+	//в объявленный Вами двухмерный ВСТРОЕННЫЙ массив 5*80 элементов типа char;
+	//признаком конца ввода является символ * (то есть строка - "*") или
+	//заполнение массива (больше свободных строк нет);
+	//сортировка строк в алфавитном порядке. Пояснение: крайне
+	//не рекомендуется для сортировки сложных объектов физически
+	//перемещать их в памяти. Намного эффективнее завести массив
+	//указателей на соответствующие строки и перемещать только
+	//указатели.
+	//Подсказка: для лексиграфического сравнения строк пользуйтесь
+	//функцией стандартной библиотеки strcmp(...), заголовочный файл <string>.
+	//Определите необходимые значения как константы
+	//STOP_STRING  -  "*"	//признак "прекратить ввод"
+	//M  -  80	//максимальный размер одной строки
+	//N  -  10	//максимальное количество строк в массиве
+	///////////////////////////////////////////////////////////////////////////
 
 
 
@@ -476,9 +563,7 @@ for(int i=0; i<...; ...)
 
 
 
-*/
+#endif
 
-
-
-	return 0;
+return 0;
 	}
