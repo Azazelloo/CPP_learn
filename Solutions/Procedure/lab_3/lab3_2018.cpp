@@ -5,6 +5,7 @@
 							Сложные указатели.
 							Ссылки.
 *************************************************************/
+#define _CRT_SECURE_NO_WARNINGS
 #define	  stop __asm nop
 #define TASK_7
 
@@ -540,28 +541,42 @@ for(int i=0; i<...; ...)
 	//N  -  10	//максимальное количество строк в массиве
 	///////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
+		size_t size = 5,realSize=0;
+	char** strArr = new char*[size];
 
 	//Цикл ввода строк:
+	for (size_t i = 0; i < size; i++) {
+		char tmpInput[80];
+		std::cout << "Enter string " << i << "-> ";
+		std::cin >> tmpInput;
+		std::cout << std::endl;
 
-
-
+		if (strcmp(tmpInput, "*") == 0) break;
+		
+		strArr[i] = new char[strlen(tmpInput) + 1];
+		strcpy(strArr[i], tmpInput);
+		++realSize;
+		}
 
 	//Цикл сортировки строк по методу "всплывающего пузырька" в
 	//порядке возрастания кода первого символа
 
+	for (size_t i = 0; i < realSize - 1; i++) {
+		for (size_t j = 0; j < realSize - i - 1; j++) {
+			if (strcmp(strArr[j], strArr[j + 1]) > 0) {
+				std::swap(strArr[j], strArr[j + 1]);
+				}
+			}
+		}
+	stop
 
+		//Освобождение занятой памяти:
 
+		for (size_t i = 0; i < realSize; i++) {
+			delete[] strArr[i];
+			}
 
-
-	//Освобождение занятой памяти:
-
-
-
+	delete strArr;
 
 #endif
 
